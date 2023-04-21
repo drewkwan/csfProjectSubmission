@@ -1,0 +1,52 @@
+.logout {
+    padding-right: 100px;
+    font-size: 20px;
+    font-family: "dankosaurus";
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.support {
+  padding-right: 100px;
+  font-size: 20px;
+  font-family: "dankosaurus";
+}
+
+.highscores {
+  padding-right: 170px;
+  font-size: 20px;
+  font-family: "dankosaurus";
+}
+
+.settings {
+  padding-right: 100px;
+  font-size: 20px;
+  font-family: "dankosaurus";
+}
+
+.title {
+  font-size: 40px;
+  font-family: "dankosaurus", Helvetica, Arial;
+  padding-left: 10px;
+}
+
+.example-icon {
+  scale: 1.5;
+}
+
+.settings:hover {
+  color:aliceblue;
+}
+
+.title:hover {
+  color:aliceblue;
+}
+
+.support:hover {
+  color:aliceblue;
+}
+
+.logout:hover {
+  color:aliceblue;
+}

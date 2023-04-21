@@ -1,0 +1,48 @@
+<mat-toolbar color="warn">
+    <span [routerLink]="['/trivia']">Welcome to TRIVIA</span>
+</mat-toolbar>
+
+<div class="customQuestionForm">
+    <form [formGroup]="form" (ngSubmit)="submitQuestion()">
+        <h4>Quiz Name:</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Input quiz name: </mat-label>
+        <input type="text" matInput placeholder="Title your quiz!" formControlName="id">
+        </mat-form-field>
+        <br>
+        <h4>Question:</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Input question: </mat-label>
+        <input type="text" matInput placeholder="Title your quiz!" formControlName="question">
+        </mat-form-field>
+        <br>
+        <h4>Correct Answer:</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Correct Answer: </mat-label>
+        <input type="text" matInput placeholder="Correct Answer" formControlName="correctAnswer">
+        </mat-form-field>
+        <br>
+        <h4>Incorrect Answer #1:</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Incorrect Answer: </mat-label>
+        <input type="text" matInput placeholder="incorrect Answer" formControlName="incorrectAnswer1">
+        </mat-form-field>
+        <br>
+        <h4>Incorrect Answer #2:</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Incorrect Answer: </mat-label>
+        <input type="text" matInput placeholder="incorrect Answer" formControlName="incorrectAnswer2">
+        </mat-form-field>
+        <br>
+        <h4>Incorrect Answer #3:</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Incorrect Answer: </mat-label>
+        <input type="text" matInput placeholder="incorrect Answer" formControlName="incorrectAnswer3">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Submit Question!</button>
+    </form>
+    <br>
+    <button mat-raised-button color="primary" [routerLink]="['/trivia/custom']">Start Quiz!</button>
+</div>
+

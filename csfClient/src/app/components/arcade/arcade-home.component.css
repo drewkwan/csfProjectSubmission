@@ -1,0 +1,46 @@
+.flappy-thumbnail {
+    scale: 0.4;
+  }
+  
+  .mat-grid-tile {
+    padding-top: 10px;
+    border-radius: 25px;;
+    /* border: 2px solid black; */
+  }
+  
+  .flappy-thumbnail:hover {
+    opacity: 0.5;
+  }
+  
+  .game-title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-family: "dankosaurus";
+    font-size: 40px;
+  }
+  
+  .button-fill {
+    width: auto;
+    height: auto;
+  }
+
+  .game-section {
+    padding-top: 20px;
+    padding-left: 50px;
+  }
+  
+  .thumbnail {
+    padding-top: 10px;
+  }
+
+  .caption{
+    font-family: "whoa-sauce";
+    color: black;
+    text-align: center;
+    padding-bottom: 180px;
+  }
+
+  .arcade {
+    background-color: aliceblue;
+  }

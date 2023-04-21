@@ -1,0 +1,27 @@
+<!-- Persisting header -->
+
+<div class="landing page">
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" [routerLink]="['/home']">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span class="title">The Arcade</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="highscores" [routerLink]="['/leaderboard']">
+        My Highscores
+      </button>
+      <button mat-icon-button class="settings" [routerLink]="['/settings']">
+        Settings
+      </button>
+      <button mat-icon-button class="support" [routerLink]="['/support']">
+        Support
+      </button>      
+      <button mat-icon-button class="logout" (click)="logout()" [routerLink]="['']">
+        Logout
+      </button>
+      
+    </mat-toolbar>
+  </div>
+
+
+<router-outlet></router-outlet>

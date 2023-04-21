@@ -1,0 +1,12 @@
+<mat-dialog-content>
+    <div class="highscore">
+        {{highscore}}
+    </div>
+    <div class="currentScore">
+        {{score}}
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+<button mat-raised-button color="primary" mat-dialog-close tabindex="-1" [routerLink]="['/home']">Go Home</button>
+<button mat-raised-button color="primary" mat-dialog-close tabindex="-1" [routerLink]="['/trivia']">Retry</button>
+</mat-dialog-actions>

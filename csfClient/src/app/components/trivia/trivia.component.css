@@ -1,0 +1,17 @@
+div{
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+h4{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+mat-list-item:hover {
+    background-color: royalblue;
+}
+
+mat-list-item {
+    align-content: auto;
+}

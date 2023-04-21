@@ -1,0 +1,35 @@
+<body>
+  
+
+<!-- Arcade games -->
+<div class="game-section">
+  <div class="game-title">
+    Classic Games
+  </div>
+  <div class="thumbnail">
+    <mat-grid-list cols="8" >
+      <mat-grid-tile colspan="2" rowspan="1">
+        <button mat-button class="button-fill" [routerLink]="['/arcade']">
+          <img class="flappy-thumbnail" src="./assets/flappy-bird-placeholder.jpg">
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+<!-- Trivia Games -->
+<div class="game-section">
+  <div class="game-title">
+    Trivia Games
+  </div>
+  <div class="thumbnail">
+    <mat-grid-list cols="8" >
+      <mat-grid-tile colspan="2" rowspan="1">
+        <button mat-button class="button-fill" [routerLink]="['/trivia']">
+          <img class="trivia-thumbnail" src="./assets/trivia-placeholder.jpg">
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  
+</div>
+</body>

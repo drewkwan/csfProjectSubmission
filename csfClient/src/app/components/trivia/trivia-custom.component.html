@@ -1,0 +1,32 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+</head>
+<mat-toolbar color="primary">
+    <span [routerLink]="['/trivia']">Welcome to TRIVIA</span>
+  </mat-toolbar>
+
+  <div>
+    <form [formGroup]="form" (ngSubmit)="getCustomTrivia()">
+        <h4>Input your quiz name!</h4>
+        <mat-form-field appearance="fill">
+            <mat-label>Quiz Id</mat-label>
+            <input matInput formControlName="quizId">
+          </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit" [disabled]="this.form.invalid">Begin Trivia!</button>
+    </form>
+</div>
+
+<div *ngIf="customQuiz">
+    <div>
+        <mat-list *ngIf="!completed">
+            <h2>Score: {{score}}</h2>
+            <h3>{{customQuiz[currentQuestion].question}}</h3>
+            <mat-list-item (click)="submitAnswer(randomQuestionList[0])">{{randomQuestionList[0]}}</mat-list-item>
+            <mat-list-item (click)="submitAnswer(randomQuestionList[1])">{{randomQuestionList[1]}}</mat-list-item>
+            <mat-list-item (click)="submitAnswer(randomQuestionList[2])">{{randomQuestionList[2]}}</mat-list-item>
+            <mat-list-item (click)="submitAnswer(randomQuestionList[3])">{{randomQuestionList[3]}}</mat-list-item>
+        </mat-list>
+    </div>
+</div>

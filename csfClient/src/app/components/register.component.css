@@ -1,0 +1,15 @@
+.main-div mat-card {
+    padding: 0px;
+}
+
+.login-form {
+    padding: 20px
+}
+
+body {
+    background-image: url("src\assets\placeholder-bg.gif");
+}
+
+.mat-toolbar {
+    background-color: #018786;
+}
