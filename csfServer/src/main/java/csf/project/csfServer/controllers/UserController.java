@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,6 +28,7 @@ import csf.project.csfServer.models.JwtResponse;
 import csf.project.csfServer.models.Role;
 import csf.project.csfServer.models.User;
 import csf.project.csfServer.services.JwtService;
+import csf.project.csfServer.services.UserException;
 import csf.project.csfServer.services.UserService;
 import jakarta.annotation.PostConstruct;
 import jakarta.json.Json;
@@ -150,6 +152,17 @@ public class UserController {
         userService.insertScore(username, category, highscore);
         JsonObject response = Json.createObjectBuilder()
                             .add("message", "score updated successfully")
+                            .build();
+        return ResponseEntity.ok(response.toString());
+    }
+
+
+    @DeleteMapping(path="/deleteUser")
+    @ResponseBody
+    public ResponseEntity<String> deleteUser(@RequestParam String username) throws UserException {
+        userService.deleteUser(username);
+        JsonObject response = Json.createObjectBuilder()
+                            .add("message", "user deleted successfully")
                             .build();
         return ResponseEntity.ok(response.toString());
     }

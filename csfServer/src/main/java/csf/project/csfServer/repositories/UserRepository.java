@@ -45,6 +45,18 @@ public class UserRepository {
         return jdbcTemplate.queryForRowSet(SQL_GET_ALL_TRIVIA_HIGHSCORES);
     }
 
+    public Integer deleteFromHighscore(String username) {
+        return jdbcTemplate.update(SQL_DELETE_FROM_HIGHSCORES, username);
+    }
+
+    public Integer deleteFromUserRoles(String username) {
+        return jdbcTemplate.update(SQL_DELETE_FROM_USER_ROLE, username);
+    }
+
+    public Integer deleteFromUsers(String username) {
+        return jdbcTemplate.update(SQL_DELETE_FROM_USER, username);
+    }
+
     
 
 

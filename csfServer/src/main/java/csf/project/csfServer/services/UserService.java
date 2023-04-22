@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import csf.project.csfServer.dao.RoleDao;
 import csf.project.csfServer.dao.UserDao;
 import csf.project.csfServer.models.Role;
@@ -99,6 +101,20 @@ public class UserService {
         user.setPassword(getEncodedPassword(user.getPassword()));
 
         return userDao.save(user);
+    }
+
+    @Transactional(rollbackFor = UserException.class)
+    public void deleteUser(String username) throws UserException {
+        //delete from user roles
+        int userRoleDelCount = userRepo.deleteFromUserRoles(username);
+
+        if (userRoleDelCount==0) {
+            throw new UserException(username);
+        }
+        //delete from highscores, this one no need rollback as it is potentially blank
+        userRepo.deleteFromHighscore(username);
+        //delete the user
+        userRepo.deleteFromUsers(username);
     }
 
 
