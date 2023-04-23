@@ -13,19 +13,19 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
     public static final String CACHE_TRIVIA ="trivia-cache";
 
-    @Value("${spring.redis.host}")
+    @Value("${SPRING_REDIS_HOST}")
     private String redisHost;
 
-    @Value("${spring.redis.port}")
+    @Value("${SPRING_REDIS_PORT}")
     private int redisPort;
 
-    @Value("${spring.redis.user}")
+    @Value("${SPRING_REDIS_USER}")
     private String redisUser;
 
-    @Value("${spring.redis.database}")
+    @Value("${SPRING_REDIS_DATABASE}")
     private int redisDatabase;
 
-    @Value("${spring.redis.password}")
+    @Value("${SPRING_REDIS_PASSWORD}")
     private String redisPassword;
 
     @Bean(CACHE_TRIVIA)

@@ -160,6 +160,7 @@ public class UserController {
     @DeleteMapping(path="/deleteUser")
     @ResponseBody
     public ResponseEntity<String> deleteUser(@RequestParam String username) throws UserException {
+        System.out.println(username);
         userService.deleteUser(username);
         JsonObject response = Json.createObjectBuilder()
                             .add("message", "user deleted successfully")

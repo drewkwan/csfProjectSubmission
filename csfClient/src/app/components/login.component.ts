@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   registrationForm!: FormGroup;
   loginForm!: FormGroup;
+  displayErrorMessage: boolean =false;
 
   constructor(private authSvc: AuthService, private fb: FormBuilder, private router: Router, private userSvc: UserService, private appComp: AppComponent) {
     
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
       this.appComp.ngOnInit()
     }).catch(error => {
       console.log(error)
+      this.displayErrorMessage=true
     })
 
   }

@@ -1,7 +1,13 @@
 <body>
     <div fxLayoutAlign="center center" fxFlexFill class="main-div">
+        
         <mat-card fxFlex="25">
-            <mat-toolbar color="primary">Login</mat-toolbar>
+            <div *ngIf="displayErrorMessage">
+                <mat-toolbar color="warn">
+                    Login failed! Please try again or register!
+                </mat-toolbar>
+            </div>
+            <mat-toolbar *ngIf="!displayErrorMessage" color="primary">Login</mat-toolbar>
             <form fxLayourAlign="stretch" fxLayout="column" class="login-form" (ngSubmit)="loginUser()" [formGroup]="loginForm">
                 <mat-form-field>
                   <input matInput placeholder="Username" formControlName="username">

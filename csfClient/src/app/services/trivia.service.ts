@@ -15,7 +15,7 @@ export class TriviaService {
     const params = new HttpParams()
                 .set("category", category)
                 .set("difficulty", difficulty)
-    return lastValueFrom(this.http.get('http://localhost:8080/api/questions', {params: params}))
+    return lastValueFrom(this.http.get('/api/questions', {params: params}))
 
   }
 

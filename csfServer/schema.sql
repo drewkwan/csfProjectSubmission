@@ -11,22 +11,22 @@ create table triviaHighScore (
     references trivia(username)
 );
 
--- create table user (
--- 	username varchar(128) not null,
---     password varchar(128) not null,
---     arcade_highscore int,
---     trivia_highscore int,
---     trivia_highscore_category varchar(128),
+create table user (
+	username varchar(128) not null,
+    password varchar(128) not null,
+    arcade_highscore int,
+    trivia_highscore int,
+    trivia_highscore_category varchar(128),
 
---     primary key(username)
--- );
+    primary key(username)
+);
 
--- create table user_role (
---     user_id varchar(128) not null,
---     role_id varchar(128) not null
--- );
+create table user_role (
+    user_id varchar(128) not null,
+    role_id varchar(128) not null
+);
 
--- create table role (
---     role_name varchar(128) not null,
---     role_description varchar(128) not null
--- );
+create table role (
+    role_name varchar(128) not null,
+    role_description varchar(128) not null
+);

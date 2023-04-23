@@ -85,7 +85,7 @@ public class UserService {
         roleDao.save(userRole);
 
         User adminUser = new User();
-        adminUser.setUsername("adminUserBossMan");
+        adminUser.setUsername("admin");
         adminUser.setPassword(getEncodedPassword("adminPassword"));
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);
