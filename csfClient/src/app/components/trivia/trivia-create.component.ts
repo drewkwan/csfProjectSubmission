@@ -11,6 +11,7 @@ import { TriviaService } from 'src/app/services/trivia.service';
 })
 export class TriviaCreateComponent implements OnInit {
 
+  id!: string;
   form!: FormGroup;
   incorrectAnswers: string[] =[];
   customQuestion: CustomQuestion ={
@@ -27,7 +28,7 @@ export class TriviaCreateComponent implements OnInit {
 
   createForm(): FormGroup {
     return this.fb.group({
-      id: this.fb.control('', [Validators.required]),
+      id: this.fb.control(this.id, [Validators.required]),
       question: this.fb.control('', [Validators.required]),
       correctAnswer: this.fb.control('', [Validators.required]),
       incorrectAnswer1: this.fb.control('', Validators.required),
@@ -35,6 +36,7 @@ export class TriviaCreateComponent implements OnInit {
       incorrectAnswer3: this.fb.control('', Validators.required),
 
     })
+    
   }
 
   submitQuestion() {
@@ -43,19 +45,21 @@ export class TriviaCreateComponent implements OnInit {
     this.incorrectAnswers.push(this.form.get("incorrectAnswer2")?.value);
     this.incorrectAnswers.push(this.form.get("incorrectAnswer3")?.value);
     console.log(this.form.get("id")?.value);
-    const id=this.form.get("id")?.value;
-    this.customQuestion.question = this.form.get("question")?.value;
+    this.id=this.form.get("id")?.value;
+    this.customQuestion.question = this.form.get("question")?.value.toString();
     this.customQuestion.correctAnswer=this.form.get("correctAnswer")?.value;
     this.customQuestion.incorrectAnswers=this.incorrectAnswers;
     console.log(this.customQuestion);
 
     //call the service and post to conrtroller
-    this.triviaSvc.insertCustomTriviaQuestion(this.customQuestion, id).then(response => {
+    this.triviaSvc.insertCustomTriviaQuestion(this.customQuestion, this.id).then(response => {
       console.log(response);
+      alert("Question successfully added!")
     }).catch(err=> {
       console.error(err);
     })
-    this.ngOnInit;
+    // this.ngOnInit();
+    this.form.reset();
   }
 
   

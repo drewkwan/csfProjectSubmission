@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { AppComponent } from '../app.component';
 import { LoginData } from '../models';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   registrationForm!: FormGroup;
   loginForm!: FormGroup;
 
-  constructor(private authSvc: AuthService, private fb: FormBuilder, private router: Router, private userSvc: UserService) {
+  constructor(private authSvc: AuthService, private fb: FormBuilder, private router: Router, private userSvc: UserService, private appComp: AppComponent) {
     
   }
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
       const token = response.jwtToken;      
       this.userSvc.decodeUser(token);
       this.router.navigate(['/home']);
+      this.appComp.ngOnInit()
     }).catch(error => {
       console.log(error)
     })

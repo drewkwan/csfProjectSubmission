@@ -20,6 +20,9 @@ import { TriviaCustomComponent } from './components/trivia/trivia-custom.compone
 import { TriviaCreateComponent } from './components/trivia/trivia-create.component';
 import { AuthGuard } from './shared/auth.guard';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { DeleteUserComponent } from './components/settings/delete-user.component';
+import { StarfallComponent } from './components/arcade/starfall/starfall.component';
 
 const appRoutes: Routes = [
   {path:'', component: LoginComponent},
@@ -30,8 +33,10 @@ const appRoutes: Routes = [
   {path: 'trivia/create', component:TriviaCreateComponent, canActivate:[AuthGuard]},
   {path: 'trivia/results/:score', component: TriviaResultComponent, canActivate:[AuthGuard] },
   {path: 'register', component: RegisterComponent },
+  {path: 'settings', component: SettingsComponent, canActivate:[AuthGuard]},
   {path: 'leaderboard', component: LeaderboardComponent, canActivate:[AuthGuard]},
-  {path: 'arcade', component: ArcadeHomeComponent, canActivate:[AuthGuard]}
+  {path: 'arcade', component: ArcadeHomeComponent, canActivate:[AuthGuard]},
+  {path: 'starfall', component: StarfallComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -46,7 +51,10 @@ const appRoutes: Routes = [
     TriviaHomeComponent,
     TriviaCustomComponent,
     TriviaCreateComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    SettingsComponent,
+    DeleteUserComponent,
+    StarfallComponent
   ],
   imports: [
     BrowserModule,

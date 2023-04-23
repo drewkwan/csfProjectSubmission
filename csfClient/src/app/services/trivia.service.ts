@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { CustomQuestion } from '../models';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class TriviaService {
       question: customQuestion.question
     }
 
-    return lastValueFrom(this.http.post('http://localhost:8080/api/postCustom', body));
+    return lastValueFrom(this.http.post('/api/postCustom', body));
   }
 
   getCustomQuiz(quizId:string): Promise<any> {
@@ -37,7 +37,7 @@ export class TriviaService {
   getTriviaHighscore(username: string): Promise<any> {
     const params = new HttpParams()
                   .set("username", username);
-    return firstValueFrom(this.http.get('http://localhost:8080/api/getTriviaHighscore', {params: params}));
+    return firstValueFrom(this.http.get('/api/getTriviaHighscore', {params: params}));
 
   }
 
@@ -47,11 +47,11 @@ export class TriviaService {
       username: username,
       category: category
     }
-    return firstValueFrom(this.http.put('http://localhost:8080/api/updateTriviaHighscore', body));
+    return firstValueFrom(this.http.put('/api/updateTriviaHighscore', body));
   }
 
-  getAllHighscores(): Promise<any> {
-    return firstValueFrom(this.http.get('http://localhost:8080/api/leaderboard'));
+  getAllHighscores(): Observable<any> {
+    return this.http.get('/api/leaderboard');
   }
 
   

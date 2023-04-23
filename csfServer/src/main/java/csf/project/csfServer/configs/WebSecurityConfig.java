@@ -48,11 +48,11 @@ public class WebSecurityConfig {
         return http.cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                        .requestMatchers("/", "/api/login", "/api/getAllUsers",
+                        .requestMatchers("", "/**", "/api/login", "/api/getAllUsers",
                                 "/api/registerUser", "/api/questions", 
                                 "/api/getTriviaHighscore", "/api/updateTriviaHighscore",
-                                "/api/leaderboard", "/api/deleteUser").permitAll()
-                        .anyRequest().hasAnyRole("User", "Admin").and()
+                                "/api/leaderboard", "/api/deleteUser", "/api/postCustom", "/api/getCustom/*").permitAll()
+                        .anyRequest().authenticated().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

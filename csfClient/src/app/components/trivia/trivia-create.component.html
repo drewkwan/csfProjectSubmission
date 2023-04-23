@@ -13,7 +13,7 @@
         <h4>Question:</h4>
         <mat-form-field appearance="fill">
         <mat-label>Input question: </mat-label>
-        <input type="text" matInput placeholder="Title your quiz!" formControlName="question">
+        <input type="text" matInput placeholder="Input your question!" formControlName="question">
         </mat-form-field>
         <br>
         <h4>Correct Answer:</h4>
@@ -25,24 +25,25 @@
         <h4>Incorrect Answer #1:</h4>
         <mat-form-field appearance="fill">
         <mat-label>Incorrect Answer: </mat-label>
-        <input type="text" matInput placeholder="incorrect Answer" formControlName="incorrectAnswer1">
+        <input type="text" matInput placeholder="Incorrect Answer" formControlName="incorrectAnswer1">
         </mat-form-field>
         <br>
         <h4>Incorrect Answer #2:</h4>
         <mat-form-field appearance="fill">
         <mat-label>Incorrect Answer: </mat-label>
-        <input type="text" matInput placeholder="incorrect Answer" formControlName="incorrectAnswer2">
+        <input type="text" matInput placeholder="Incorrect Answer" formControlName="incorrectAnswer2">
         </mat-form-field>
         <br>
         <h4>Incorrect Answer #3:</h4>
         <mat-form-field appearance="fill">
         <mat-label>Incorrect Answer: </mat-label>
-        <input type="text" matInput placeholder="incorrect Answer" formControlName="incorrectAnswer3">
+        <input type="text" matInput placeholder="Incorrect Answer" formControlName="incorrectAnswer3">
         </mat-form-field>
         <br>
-        <button mat-raised-button color="primary" type="submit">Submit Question!</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit Question!</button>
     </form>
     <br>
     <button mat-raised-button color="primary" [routerLink]="['/trivia/custom']">Start Quiz!</button>
+    <br>
 </div>
 

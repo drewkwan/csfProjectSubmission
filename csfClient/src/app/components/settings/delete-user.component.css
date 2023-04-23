@@ -1,0 +1,16 @@
+.deleteForm{
+    padding-bottom: 10%;
+    padding-left: 5%;
+}
+.button{
+    padding-top: 1%
+}
+.deleteButton{
+    color: white;
+    background-color: red;
+}
+
+.declineButton {
+    color: white;
+    background-color: #3F51B5;
+}

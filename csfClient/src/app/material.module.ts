@@ -8,9 +8,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
-import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const matModules: any[] = [
     MatToolbarModule,
@@ -24,7 +25,9 @@ const matModules: any[] = [
     MatCardModule,
     MatIconModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
+    
 ]
 
 @NgModule({

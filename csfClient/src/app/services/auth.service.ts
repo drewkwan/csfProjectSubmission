@@ -20,7 +20,7 @@ export class AuthService {
       username: data.username,
       password: data.password,
     }
-    return lastValueFrom(this.http.post("http://localhost:8080/api/registerUser", body))
+    return lastValueFrom(this.http.post("/api/registerUser", body))
   }
 
   login(data: LoginData): Promise<any> {
@@ -29,7 +29,7 @@ export class AuthService {
       password: data.password
     }
 
-    return lastValueFrom(this.http.post("http://localhost:8080/api/login", body))
+    return lastValueFrom(this.http.post("/api/login", body))
   }
 
 }

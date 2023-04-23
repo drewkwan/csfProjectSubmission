@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { default as decode} from 'jwt-decode';
 import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
@@ -37,8 +37,8 @@ export class UserService {
     }))
   }
 
-  getAllUsers(): Observable<any> {
-    return this.http.get("http://localhost:8080/api/getAllUsers");
+  getAllUsers(): Promise<any> {
+    return firstValueFrom(this.http.get("/api/getAllUsers"));
   }
 
   // createUser(username: string, password: string) {
@@ -48,6 +48,16 @@ export class UserService {
   //   }
   //   return lastValueFrom(this.http.post("/api/createUser", body));
   // }
+
+  deleteUser(username: string) {
+    const params = new HttpParams()
+          .set('username', username)
+    // const body ={ 
+    //   username: username,
+    //   password: password
+    // }
+    return lastValueFrom(this.http.delete("/api/deleteUser", {params: params}));
+  }
 
 
 }

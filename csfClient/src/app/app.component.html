@@ -8,16 +8,16 @@
       <span class="title">The Arcade</span>
       <span class="example-spacer"></span>
       <button mat-icon-button class="highscores" [routerLink]="['/leaderboard']">
-        My Highscores
+        Leaderboard
       </button>
       <button mat-icon-button class="settings" [routerLink]="['/settings']">
         Settings
       </button>
-      <button mat-icon-button class="support" [routerLink]="['/support']">
-        Support
-      </button>      
-      <button mat-icon-button class="logout" (click)="logout()" [routerLink]="['']">
+      <button mat-icon-button class="logout" *ngIf="currUser" (click)="logout()" [routerLink]="['']">
         Logout
+      </button>
+      <button mat-icon-button class="logout" *ngIf="!currUser" [routerLink]="['']">
+        Login
       </button>
       
     </mat-toolbar>

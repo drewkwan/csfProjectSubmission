@@ -21,7 +21,11 @@ export class TriviaComponent implements OnInit {
     {value: 'history', viewValue: 'History'},
     {value: 'general_knowledge', viewValue: 'General Knowledge'},
     {value: 'Science', viewValue: 'Science'},
-    {value: 'sports_and_leisure', viewValue: 'Sports & Leisure'}
+    {value: 'sports_and_leisure', viewValue: 'Sports & Leisure'},
+    {value: 'society_and_culture', viewValue: 'Society & Culture'},
+    {value: 'music', viewValue: 'Music'},
+    {value: 'food_and_drink', viewValue: 'Food & Drink'},
+    {value: 'geography', viewValue: 'Geography'}
   ];
 
   currUser!: User;
@@ -75,13 +79,13 @@ export class TriviaComponent implements OnInit {
     this.questionList.push(this.quiz[this.currentQuestion].incorrectAnswers[0]);
     this.questionList.push(this.quiz[this.currentQuestion].incorrectAnswers[1]);
     this.questionList.push(this.quiz[this.currentQuestion].incorrectAnswers[2]);
-    console.log("ordered answers", this.questionList);
+    // console.log("ordered answers", this.questionList);
     //take answers and add them to random list
     this.transferToRandom();
     this.transferToRandom();
     this.transferToRandom();
     this.transferToRandom();
-    console.log("random answers", this.randomQuestionList);
+    // console.log("random answers", this.randomQuestionList);
     console.log("for debugging, correct answer: " + this.quiz[this.currentQuestion].correctAnswer);
     
   }
@@ -113,19 +117,28 @@ export class TriviaComponent implements OnInit {
         this.currentQuestion = this.currentQuestion + 1; 
         this.checked= false;
         if (this.currentQuestion >= this.quiz.length) {
-          this.completed=true;
+          this.completed=true
           this.currUser = JSON.parse(localStorage.getItem("userData")!);
           const username = this.currUser.sub;
+          this.category= this.form.get('category')?.value
+          console.log(this.category, username, this.score, this.highscore)
           //get current highscore
-          if (this.score > this.highscore) {
-            this.highscore = this.score;
-            this.triviaSvc.saveHighscore(this.score, username, this.form.get('category')?.value).then(response=>{
-              console.log(response);
+            if (this.score > this.highscore) {
+              this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
+                console.log(response)
+              });
+              this.highscore = this.score;
+              this.openAlertDialog(this.score, this.highscore)
+            } else {
+              this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
+                console.log(response)
             })
-          this.openAlertDialog(this.score, this.highscore);
+            this.openAlertDialog(this.score, this.highscore);
+          };
+          
+        } else {
+          this.randomiseQuestions();
         }
-        } 
-        this.randomiseQuestions();
         
       } else if (this.quiz[this.currentQuestion].difficulty == "medium") {
         this.score = this.score + 2;
@@ -136,19 +149,25 @@ export class TriviaComponent implements OnInit {
           this.currUser = JSON.parse(localStorage.getItem("userData")!);
           const username = this.currUser.sub;
           this.category= this.form.get('category')?.value
+          console.log(this.category, username, this.score, this.highscore)
           //get current highscore
-          this.triviaSvc.getTriviaHighscore(username).then(response=>{
-            this.highscore=response.highscore;
-          });
-          if (this.score > this.highscore) {
-              this.highscore = this.score;
+            if (this.score > this.highscore) {
               this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
-                console.log(response);
-              })
+                console.log(response)
+              });
+              this.highscore = this.score;
+              this.openAlertDialog(this.score, this.highscore)
+            } else {
+              this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
+                console.log(response)
+            })
             this.openAlertDialog(this.score, this.highscore);
-          }
-        } 
-        this.randomiseQuestions();
+          };
+          
+        } else {
+          this.randomiseQuestions();
+        }
+        
         
       } else if (this.quiz[this.currentQuestion].difficulty == "hard") {
         this.score = this.score + 3;
@@ -157,18 +176,27 @@ export class TriviaComponent implements OnInit {
         if (this.currentQuestion >= this.quiz.length) {
           this.completed=true;
           this.currUser = JSON.parse(localStorage.getItem("userData")!);
-          const username = this.currUser.sub;
-          this.category= this.form.get('category')?.value
-          //get current highscore
+        const username = this.currUser.sub;
+        this.category= this.form.get('category')?.value
+        console.log(this.category, username, this.score, this.highscore)
+        //get current highscore
           if (this.score > this.highscore) {
-              this.highscore = this.score;
-              this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
-                console.log(response);
-              })
-            this.openAlertDialog(this.score, this.highscore);
-          }
-        } 
-        this.randomiseQuestions();
+            this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
+              console.log(response)
+            });
+            this.highscore = this.score;
+            this.openAlertDialog(this.score, this.highscore)
+          } else {
+            this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
+              console.log(response)
+          })
+          this.openAlertDialog(this.score, this.highscore);
+        };
+          
+        } else {
+          this.randomiseQuestions();
+        }
+        
         
       }
       

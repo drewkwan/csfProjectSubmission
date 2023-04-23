@@ -16,7 +16,7 @@ public class TriviaService {
 
         String triviaURL = UriComponentsBuilder.fromUriString(URL_TRIVIA)
                        .queryParam("categories", category)
-                       .queryParam("limit", 20)
+                       .queryParam("limit", 30)
                        .queryParam("difficulty", difficulty)
                        .toUriString();
         System.out.println(triviaURL);
@@ -27,7 +27,7 @@ public class TriviaService {
         ResponseEntity<String> response = template.exchange(req, String.class);
         String payload = response.getBody();
 
-        System.out.println(payload);
+        // System.out.println(payload);
         return payload;
         
 

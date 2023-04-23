@@ -35,12 +35,12 @@
   }
 
   .caption{
-    font-family: "whoa-sauce";
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color: black;
     text-align: center;
-    padding-bottom: 180px;
+
   }
 
   .arcade {
-    background-color: aliceblue;
+
   }

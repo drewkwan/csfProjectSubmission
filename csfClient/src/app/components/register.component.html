@@ -6,7 +6,9 @@
                     Username already exists
                 </mat-toolbar>
             </div>
-            <mat-toolbar>Register New User</mat-toolbar>
+            <div class="registrationForm">
+                <mat-toolbar color="accent">Register New User</mat-toolbar>
+            </div>
             <form [formGroup]="registrationForm" fxLayourAlign="stretch" fxLayout="column" class="login-form" (ngSubmit)="register()">
                 <mat-form-field>
                   <input matInput formControlName="username" placeholder="Username">
@@ -16,7 +18,7 @@
                   </mat-form-field>
                   <button mat-raised-button type="submit" [disabled]="isFormInvalid()">Register</button>
                   <br>
-                  <button mat-raised-button [routerLink]="['']">Login</button>
+                  <button mat-raised-button [routerLink]="['']">Go to Login</button>
               </form>
               
         </mat-card>

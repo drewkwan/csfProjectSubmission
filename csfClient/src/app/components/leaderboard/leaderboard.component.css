@@ -1,4 +1,20 @@
 table {
     width: 100%;
   }
+
+  .header{
+    background-color: #E91E63;
+  }
+
+  .gold {
+    background-color: goldenrod;
+  }
+
+  .silver{
+    background-color: silver;
+  }
+
+  .bronze{
+    background-color: #CD7F32;
+  }
   

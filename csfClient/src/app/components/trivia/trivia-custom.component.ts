@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Category, CustomQuestion, CustomQuiz, Question } from 'src/app/models';
 import { TriviaService } from 'src/app/services/trivia.service';
+import { TriviaResultComponent } from './trivia-result.component';
 
 @Component({
   selector: 'app-trivia-custom',
@@ -24,7 +26,7 @@ export class TriviaCustomComponent implements OnInit {
   form!: FormGroup;
   currentQuestion: number = 0;
 
-  constructor(private fb: FormBuilder, private triviaSvc: TriviaService, private router: Router) {}
+  constructor(private fb: FormBuilder, private triviaSvc: TriviaService, private router: Router, private dialog: MatDialog) {}
   
   ngOnInit() {
     this.form = this.createForm();
@@ -76,6 +78,10 @@ export class TriviaCustomComponent implements OnInit {
     })
   }
 
+  isFormInvalid() {
+    return this.form.invalid;
+  }
+
 
   submitAnswer(answer: string) {
 
@@ -84,15 +90,29 @@ export class TriviaCustomComponent implements OnInit {
       this.currentQuestion = this.currentQuestion+1;
       if (this.currentQuestion >= this.customQuiz.length) {
         this.completed=true;
-        this.router.navigate(['/trivia/results']);
-      } 
-      this.randomiseQuestions();
+        this.openAlertDialog(this.score, 0);
+      } else {
+        this.randomiseQuestions();
+      }
       
     }
     else {
       //game over
-      this.router.navigate(['/trivia/results']);
+      console.log(this.score);
+      this.openAlertDialog(this.score, 0)
     }
     
+  }
+
+  openAlertDialog(score:number, highscore:number) {
+    const dialogRef = this.dialog.open(TriviaResultComponent,{
+      data:{
+        score: `Your Score: ${score}`,
+        highscore: `Your Highscore: ${highscore}`,
+        buttonText: {
+          cancel: 'Done'
+        }
+      },
+    });
   }
 }

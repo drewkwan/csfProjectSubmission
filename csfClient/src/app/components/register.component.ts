@@ -33,29 +33,33 @@ export class RegisterComponent {
   }
 
   register() {
+    this.userList = [];
     console.log(this.registrationForm.value);
-    const username = this.registrationForm.get('username')?.value;
-    const password = this.registrationForm.get('password')?.value;
+    const username:string = this.registrationForm.get('username')?.value;
     //check if username exists
-    this.userSvc.getAllUsers().subscribe(response=> {
-      console.log("List of users: ", response)
-      this.userList = response;
-    });
-
-    for (let i =0; i<=this.userList.length; i++) {
-      if (username === this.userList[i])
+    this.userSvc.getAllUsers().then(response=> {
+      for (let i=0; i<response.length; i++) {
+        this.userList.push(response[i].username);
+      }  if (this.userList.includes(username)) {
+        console.log(username)
+        alert("Username already exists");
         this.displayErrorMessage = true;
         this.router.navigate(['/register']);
-    }
+      } else {
+        this.authSvc.register(this.registrationForm.value).then(response => {
+          console.log(response)
+          alert(`User ${username} created successfully!`)
+          this.router.navigate(['']);
+        }).catch(error => {
+          console.error(error);
+          this.displayErrorMessage=true;
+        })
+    
+        this.router.navigate(['/home']);
+      }
+    });
 
-    this.authSvc.register(this.registrationForm.value).then(response => {
-      console.log(response)
-    }).catch(error => {
-      console.error(error);
-      this.displayErrorMessage=true;
-    })
-
-    this.router.navigate(['/home']);
+    
   }
 
 }

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,8 +52,8 @@ public class TriviaController {
         List<Question> questions = new LinkedList<>();
         //get params from body
         Integer limit = 20;
-        System.out.println(category);
-        System.out.println(difficulty);
+        // System.out.println(category);
+        // System.out.println(difficulty);
 
         String data = triviaSvc.getTriviaQuestions(category, difficulty, limit);
         JsonReader triviaReader = Json.createReader(new StringReader(data));
