@@ -8,10 +8,10 @@
 
 body {
     background-image: url("src\assets\placeholder-bg.gif");
-}
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
-.registrationForm {
-    background-color: #018786;
 }
 
 .spinner {
@@ -31,5 +31,17 @@ body {
     top:        0; 
     left:       0; 
     position:   fixed;
+}
+
+mat-card {
+    border: 55px ;
+    border-radius: 30px;
+}
+
+mat-toolbar {
+    border: 55px !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px;
+    border: #000 !important;
 }
 
