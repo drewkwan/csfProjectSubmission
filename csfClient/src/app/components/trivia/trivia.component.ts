@@ -125,18 +125,19 @@ export class TriviaComponent implements OnInit {
           const username = this.currUser.sub;
           this.category= this.form.get('category')?.value
           console.log(this.category, username, this.score, this.highscore)
+          const message: string = "Congratulations! You've reached the end!"
           //get current highscore
             if (this.score > this.highscore) {
               this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
                 console.log(response)
               });
               this.highscore = this.score;
-              this.openAlertDialog(this.score, this.highscore)
+              this.openAlertDialog(this.score, this.highscore, message)
             } else {
               this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
                 console.log(response)
             })
-            this.openAlertDialog(this.score, this.highscore);
+            this.openAlertDialog(this.score, this.highscore, message);
           };
           
         } else {
@@ -148,6 +149,7 @@ export class TriviaComponent implements OnInit {
         this.currentQuestion = this.currentQuestion +1;
         this.checked= false;
         if (this.currentQuestion >= this.quiz.length) {
+          const message: string = "Congratulations! You've reached the end!"
           this.completed=true
           this.currUser = JSON.parse(localStorage.getItem("userData")!);
           const username = this.currUser.sub;
@@ -159,12 +161,12 @@ export class TriviaComponent implements OnInit {
                 console.log(response)
               });
               this.highscore = this.score;
-              this.openAlertDialog(this.score, this.highscore)
+              this.openAlertDialog(this.score, this.highscore, message)
             } else {
               this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
                 console.log(response)
             })
-            this.openAlertDialog(this.score, this.highscore);
+            this.openAlertDialog(this.score, this.highscore, message);
           };
           
         } else {
@@ -177,6 +179,7 @@ export class TriviaComponent implements OnInit {
         this.currentQuestion = this.currentQuestion +1;
         this.checked= false;
         if (this.currentQuestion >= this.quiz.length) {
+          const message: string = "Congratulations! You've reached the end!"
           this.completed=true;
           this.currUser = JSON.parse(localStorage.getItem("userData")!);
         const username = this.currUser.sub;
@@ -188,12 +191,12 @@ export class TriviaComponent implements OnInit {
               console.log(response)
             });
             this.highscore = this.score;
-            this.openAlertDialog(this.score, this.highscore)
+            this.openAlertDialog(this.score, this.highscore, message)
           } else {
             this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
               console.log(response)
           })
-          this.openAlertDialog(this.score, this.highscore);
+          this.openAlertDialog(this.score, this.highscore, message);
         };
           
         } else {
@@ -210,27 +213,29 @@ export class TriviaComponent implements OnInit {
         const username = this.currUser.sub;
         this.category= this.form.get('category')?.value
         console.log(this.category, username, this.score, this.highscore)
+        const message: string = "GAME OVER!"
         //get current highscore
           if (this.score > this.highscore) {
             this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
               console.log(response)
             });
             this.highscore = this.score;
-            this.openAlertDialog(this.score, this.highscore)
+            this.openAlertDialog(this.score, this.highscore, message)
           } else {
             this.triviaSvc.saveHighscore(this.score, username, this.category).then(response=>{
               console.log(response)
           })
-          this.openAlertDialog(this.score, this.highscore);
+          this.openAlertDialog(this.score, this.highscore, message);
         };
           
     }
     
   }
 
-  openAlertDialog(score:number, highscore:number) {
+  openAlertDialog(score:number, highscore:number, message: string) {
     const dialogRef = this.dialog.open(TriviaResultComponent,{
       data:{
+        message: `${message}`,
         score: `Your Score: ${score}`,
         highscore: `Your Highscore: ${highscore}`,
         buttonText: {

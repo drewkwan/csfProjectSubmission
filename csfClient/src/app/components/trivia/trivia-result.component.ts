@@ -13,10 +13,12 @@ export class TriviaResultComponent {
   score: string = ""
   highscore: string= ""
   cancelButtonText = "Cancel"
+  message: string=""
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<TriviaResultComponent>) {
     if (data) {
+      this.message = data.message || this.message;
       this.score = data.score || this.score;
       this.highscore=data.highscore || this.highscore;
       if (data.buttonText) {
