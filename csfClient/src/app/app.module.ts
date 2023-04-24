@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -36,7 +36,8 @@ const appRoutes: Routes = [
   {path: 'settings', component: SettingsComponent, canActivate:[AuthGuard]},
   {path: 'leaderboard', component: LeaderboardComponent, canActivate:[AuthGuard]},
   {path: 'arcade', component: ArcadeHomeComponent, canActivate:[AuthGuard]},
-  {path: 'starfall', component: StarfallComponent, canActivate:[AuthGuard]}
+  {path: 'starfall', component: StarfallComponent, canActivate:[AuthGuard]},
+  {path: '**', redirectTo: '', pathMatch: 'full'}
 ]
 
 @NgModule({
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule
+    
   ],
   providers: [CdkColumnDef],
   bootstrap: [AppComponent]
