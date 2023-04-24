@@ -37,7 +37,8 @@ export class TriviaComponent implements OnInit {
   checked: boolean = false;
   completed: boolean = false;
   displayScore: boolean=false;
-  username:string = "drew";
+  // username:string = "drew";
+  loading: boolean = false;
 
   form!: FormGroup;
   currentQuestion: number = 0;
@@ -92,11 +93,13 @@ export class TriviaComponent implements OnInit {
 
   getTrivia() {
     console.log(this.form.value)
+    this.loading=true;
     const category = this.form.get('category')?.value;
     const difficulty = this.form.get('difficulty')?.value;
     this.triviaSvc.getTriviaQuestions(category, difficulty).then(response=> {
       this.quiz = response;
-      console.log(this.quiz);
+      // console.log(this.quiz);
+      this.loading=false;
       this.randomiseQuestions();
     }).catch(err=> {
       console.error(err);

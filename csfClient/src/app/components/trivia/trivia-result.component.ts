@@ -18,7 +18,7 @@ export class TriviaResultComponent {
     private dialogRef: MatDialogRef<TriviaResultComponent>) {
     if (data) {
       this.score = data.score || this.score;
-      this.highscore=data.highscore || this.highscore
+      this.highscore=data.highscore || this.highscore;
       if (data.buttonText) {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
       }

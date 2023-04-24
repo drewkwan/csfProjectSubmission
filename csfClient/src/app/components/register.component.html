@@ -1,4 +1,13 @@
 <body>
+    <div class="overlay" *ngIf="loading">
+        <div class="spinner">
+            <mat-spinner 
+                diameter="50"
+                mode="indeterminate"
+                color="primary">
+            </mat-spinner>
+        </div>
+    </div>
     <div fxLayoutAlign="center center" fxFlexFill class="main-div">
         <mat-card fxFlex="25">
             <div *ngIf="displayErrorMessage">

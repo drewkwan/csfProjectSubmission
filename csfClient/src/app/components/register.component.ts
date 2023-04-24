@@ -13,7 +13,7 @@ export class RegisterComponent {
   registrationForm!: FormGroup;
   displayErrorMessage!: boolean;
   userList: string[] = [];
-
+  loading:boolean = false;
 
   constructor(private fb: FormBuilder, private userSvc: UserService, private router: Router, private authSvc: AuthService) { }
   
@@ -34,6 +34,7 @@ export class RegisterComponent {
 
   register() {
     this.userList = [];
+    this.loading=true;
     console.log(this.registrationForm.value);
     const username:string = this.registrationForm.get('username')?.value;
     //check if username exists
@@ -42,12 +43,14 @@ export class RegisterComponent {
         this.userList.push(response[i].username);
       }  if (this.userList.includes(username)) {
         console.log(username)
+        this.loading=false;
         alert("Username already exists");
         this.displayErrorMessage = true;
         this.router.navigate(['/register']);
       } else {
         this.authSvc.register(this.registrationForm.value).then(response => {
           console.log(response)
+          this.loading=false;
           alert(`User ${username} created successfully!`)
           this.router.navigate(['']);
         }).catch(error => {

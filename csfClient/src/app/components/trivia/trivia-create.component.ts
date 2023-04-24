@@ -14,6 +14,7 @@ export class TriviaCreateComponent implements OnInit {
   id!: string;
   form!: FormGroup;
   incorrectAnswers: string[] =[];
+  loading: boolean = false;
   customQuestion: CustomQuestion ={
     correctAnswer: '',
     incorrectAnswers: [],
@@ -40,22 +41,26 @@ export class TriviaCreateComponent implements OnInit {
   }
 
   submitQuestion() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
+    this.loading=true;
     this.incorrectAnswers.push(this.form.get("incorrectAnswer1")?.value);
     this.incorrectAnswers.push(this.form.get("incorrectAnswer2")?.value);
     this.incorrectAnswers.push(this.form.get("incorrectAnswer3")?.value);
-    console.log(this.form.get("id")?.value);
+    // console.log(this.form.get("id")?.value);
     this.id=this.form.get("id")?.value;
     this.customQuestion.question = this.form.get("question")?.value.toString();
     this.customQuestion.correctAnswer=this.form.get("correctAnswer")?.value;
     this.customQuestion.incorrectAnswers=this.incorrectAnswers;
-    console.log(this.customQuestion);
+    // console.log(this.customQuestion);
 
     //call the service and post to conrtroller
     this.triviaSvc.insertCustomTriviaQuestion(this.customQuestion, this.id).then(response => {
       console.log(response);
-      alert("Question successfully added!")
+      this.loading = false;
+      alert(`Question added successfully added for ${this.id}`)
     }).catch(err=> {
+      this.loading=false
+      alert("Question could not be added!")
       console.error(err);
     })
     // this.ngOnInit();

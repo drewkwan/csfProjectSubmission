@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   registrationForm!: FormGroup;
   loginForm!: FormGroup;
   displayErrorMessage: boolean =false;
+  loading: boolean = false;
 
   constructor(private authSvc: AuthService, private fb: FormBuilder, private router: Router, private userSvc: UserService, private appComp: AppComponent) {
     
@@ -38,14 +39,17 @@ export class LoginComponent implements OnInit {
   loginUser() {
     console.log(this.loginForm.value)
     const formData:LoginData = this.loginForm.value;
+    this.loading=true
     this.authSvc.login(formData).then(response=>{
-
+      
       const token = response.jwtToken;      
       this.userSvc.decodeUser(token);
       this.router.navigate(['/home']);
+      this.loading = false;
       this.appComp.ngOnInit()
     }).catch(error => {
       console.log(error)
+      this.loading = false;
       this.displayErrorMessage=true
     })
 
@@ -53,7 +57,7 @@ export class LoginComponent implements OnInit {
 
   submitForm() {
     const formData = this.registrationForm.value;
-    this.authSvc.register(formData)
+    this.authSvc.register(formData);
 
   }
 
