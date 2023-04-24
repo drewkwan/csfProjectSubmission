@@ -37,9 +37,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+          
       - name: Install Railway
-        run: npm i -g @railway/cli@2.1.0
+        run: npm i -g @railway/cli
+
       - name: Railway Up
         working-directory: ./csfServer
         run: railway up
